@@ -39,12 +39,25 @@
 <br>
 <h3>Reactive Forms</h3>
 <form [formGroup]="myForm" (ngSubmit)="onSubmitRf(myForm)">
-	<div>Name<input formControlName="name" placeholder="Your name"></div>
-		<div>Email<input formControlName="emailRf" placeholder="Your email"></div>
-			<div>Password<input formControlName="passwordRf" placeholder="Your password"></div>
+	<div>Name<input formControlName="name" placeholder="Your name">
+		<span *ngIf="myForm.get('name').errors && (myForm.get('name').touched || myForm.get('name').dirty)">
+                                Name is required
+                            </span>
+	</div>
 
-				<button type="submit">Submit</button>
-				<button type="button" (click)="myForm.reset()">
-    Reset
-  </button>
+	<div>Email<input formControlName="emailRf" placeholder="Your email">
+		<span *ngIf="myForm.get('emailRf').errors && (myForm.get('emailRf').touched || myForm.get('emailRf').dirty)">
+                                Email is required
+                            </span>
+		<span *ngIf="myForm.get('emailRf').touched && myForm.get('emailRf').errors?.email">
+      Enter a valid email address
+    </span></div>
+	<div>Password<input formControlName="passwordRf" placeholder="Your password">
+		<span *ngIf="myForm.get('passwordRf').errors && (myForm.get('passwordRf').touched || myForm.get('passwordRf').dirty)">
+    Password is required
+    </span>
+	</div>
+	<br>
+	<button type="submit" [disabled]="!myForm.valid">Submit</button>
+	<button type="button" (click)="myForm.reset()">Reset</button>
 </form>
