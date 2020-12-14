@@ -1,0 +1,47 @@
+<h3>Template Driven Form</h3>
+<form #userForm="ngForm" (ngSubmit)="onSubmit(userForm)">
+	<div>UserName
+		<input type="text" class="inputField" placeholder="User name"
+         required maxlength="25"
+         [(ngModel)]="userName" name="userName"
+         #selectedName="ngModel">
+		<div *ngIf="!selectedName.valid && selectedName.touched">
+			Username is required!
+		</div>
+	</div>
+	<div>Email
+		<input type="email" class="inputField" placeholder="Email"
+         required [(ngModel)]="email"
+         name="email" #userEmail="ngModel">
+		<div *ngIf="!userEmail.valid && userEmail.touched">
+			Email is required!
+		</div>
+	</div>
+	<div>Password
+		<input type="password" class="inputField" placeholder="Password" required
+         [(ngModel)]="password" name="password"
+         #userPassword="ngModel">
+		<div *ngIf="!userPassword.valid && userPassword.touched">
+			Password is required!
+		</div>
+	</div>
+
+	<br>
+	<button type="submit" [disabled]="!userForm.form.valid">
+    Register
+  </button>
+
+	<button type="button" (click)="userForm.reset()">
+    Reset
+  </button>
+
+</form>
+<br>
+<h3>Reactive Forms</h3>
+<form [formGroup]="myForm" (ngSubmit)="onSubmit(myForm)">
+	<div>Name<input formControlName="name" placeholder="Your name"></div>
+		<div>Email<input formControlName="email" placeholder="Your email"></div>
+			<div>Password<input formControlName="password" placeholder="Your password"></div>
+
+				<button type="submit">Submit</button>
+</form>
