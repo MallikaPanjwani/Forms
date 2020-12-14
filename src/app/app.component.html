@@ -38,10 +38,13 @@
 </form>
 <br>
 <h3>Reactive Forms</h3>
-<form [formGroup]="myForm" (ngSubmit)="onSubmit(myForm)">
+<form [formGroup]="myForm" (ngSubmit)="onSubmitRf(myForm)">
 	<div>Name<input formControlName="name" placeholder="Your name"></div>
-		<div>Email<input formControlName="email" placeholder="Your email"></div>
-			<div>Password<input formControlName="password" placeholder="Your password"></div>
+		<div>Email<input formControlName="emailRf" placeholder="Your email"></div>
+			<div>Password<input formControlName="passwordRf" placeholder="Your password"></div>
 
 				<button type="submit">Submit</button>
+				<button type="button" (click)="myForm.reset()">
+    Reset
+  </button>
 </form>
